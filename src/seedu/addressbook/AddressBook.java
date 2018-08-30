@@ -383,9 +383,28 @@ public class AddressBook {
             return getUsageInfoForAllCommands();
         case COMMAND_EXIT_WORD:
             executeExitProgramRequest();
+        case "edit":
+            return executeEditPerson(commandArgs);
         default:
             return getMessageForInvalidCommandInput(commandType, getUsageInfoForAllCommands());
         }
+    }
+
+    // edit command argument format: <index># <add person command argument format>
+    private static String executeEditPerson(String commandArgs) {
+        // split based on the # divider
+        final String[] split =  commandArgs.trim().split("#");
+
+        // try decoding a person from the raw args
+        final Optional<String[]> decodeResult = decodePersonFromString(split[1].trim());
+
+        // delete, then add the person to edit his entry
+        executeDeletePerson(split[0]);
+
+        // add the person as specified
+        final String[] personToAdd = decodeResult.get();
+        addPersonToAddressBook(personToAdd);
+        return "Successfully edited this record";
     }
 
     /**
