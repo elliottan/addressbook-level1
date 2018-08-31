@@ -44,7 +44,7 @@ public class AddressBook {
     /**
      * Version info of the program.
      */
-    private static final String VERSION = "AddessBook Level 1 - Version 1.0";
+    private static final String VERSION = "AddessBook Level 1 - Version 1.0.1s";
 
     /**
      * A decorative prefix added to the beginning of lines printed by AddressBook
